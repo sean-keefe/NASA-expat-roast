@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Roast Upload Site</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f7f7f7;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(to right, #283e51, #4b79a1);
+      color: white;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    header .banner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    header .banner img {
+      height: 60px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.2rem;
+    }
+
+    header p {
+      margin-top: 0.5rem;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #4b79a1;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      margin: 1rem 0;
+      background: #4b79a1;
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+    }
+
+    #zoom-button {
+      display: inline-block;
+      background: linear-gradient(45deg, #ff6f61, #ffcc33);
+      color: white;
+      font-size: 1.8rem;
+      font-weight: bold;
+      padding: 1rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 1.5rem;
+      color: #777;
+    }
+
+    #countdown {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #d9534f;
+      text-align: center;
+      margin: 1rem 0 2rem 0;
+    }
+
+    ul.steps {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    ul.steps li {
+      background: #eaf0f7;
+      margin: 0.5rem 0;
+      padding: 1rem;
+      border-radius: 6px;
+    }
+
+    #zoom-link a {
+      color: white;
+      text-decoration: none;
+    }
+
+    /* Mobile-friendly header logos */
+    @media (max-width: 600px) {
+      header .banner {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      header .banner img {
+        height: 40px; /* smaller logos on mobile */
+      }
+
+      header h1 {
+        font-size: 1.8rem; /* slightly smaller title */
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="banner">
+      <img src="https://github.com/sean-keefe/Virtual-Roast-Upload-Site/tree/main/images/nasa_logo.png" alt="NASA Logo">
+      <h1>Recent NCCS Expats' Roast - Upload Site</h1>
+      <img src="https://github.com/sean-keefe/Virtual-Roast-Upload-Site/tree/main/images/NCCS_Logo_0.png" alt="NCCS Logo">
+    </div>
+    <p> Please join us live for a celebration of our dedicated NCCS expats and their contributions to NASA! <p>
+     This <em>friendly</em> roast will feature thanks, praise, holiday beverages (in the safety of your home), and some of the funniest stories you never knew about. <br>
+     If you have photos, videos, and/or stories to share, download the slide template linked below and create your own slide(s) to talk over later. <br>
+     Upload deadline: November 26 (allows enough time to weave them together.) </p>
+  </header>
+
+  <div class="container">
+    <h2>Event Info</h2>
+    <p>
+      Welcome! We’re hosting a 2-hour virtual roast and celebration for everyone affected by NASA's recent layoffs.  
+      Submissions are private and viewable only by the event organizers.
+    </p>
+    <p>
+      <strong>Event Date & Time:</strong> <span id="event-date">Dec 2, 2025 18:00:00</span> via Zoom (link will appear on this page 1 day before the event)
+    </p>
+
+    <div id="countdown">Loading countdown...</div>
+
+    <h2>How to Submit</h2>
+    <ul class="steps">
+      <li>Step 1: Download the <a href="https://docs.google.com/presentation/d/1sb6DPz_WcKbIVTJmLXMTe20UxsN8kp6L/copy" target="_blank">slide template</a> and edit your slides.</li>
+      <li>Step 2: Gather any photos or videos you want to share.</li>
+      <li>Step 3: Click the button below to upload your files via the secure Google Form.</li>
+      <li>Step 4: Double-check your submissions — only the organizer can view them.</li>
+    </ul>
+
+    <h2>Upload Your Photos & Videos</h2>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdyxQWTInf0UAVmpmPRobsKTVQXh4WHL6IcMNGj2atvCc5BGQ/viewform?usp=preview" target="_blank" class="button" id="upload-button">
+      Upload Photos & Videos
+    </a>
+    <p id="closed-message" style="display:none; color:#d9534f; font-weight:bold; margin-top:1rem;">
+      Submissions are now closed.
+    </p>
+
+    <h2>Join the Live Roast</h2>
+    <p id="zoom-link" style="display:none;">
+      <a href="YOUR_ZOOM_LINK" target="_blank" id="zoom-button">🎉 Join the Roast!</a>
+    </p>
+
+  </div>
+
+  <footer>
+    Made with ❤️ using GitHub Pages & Google Forms
+  </footer>
+
+  <script>
+    const countdownEl = document.getElementById('countdown');
+    const uploadBtn = document.getElementById('upload-button');
+    const closedMsg = document.getElementById('closed-message');
+    const zoomLink = document.getElementById('zoom-link');
+    const eventDate = new Date(document.getElementById('event-date').innerText).getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      if(distance < 0){
+        countdownEl.innerHTML = "The event has started!";
+        uploadBtn.style.display = "none";
+        closedMsg.style.display = "block";
+        zoomLink.style.display = "block"; // Show Zoom button
+        clearInterval(timerInterval);
+        launchConfetti(); // Optional confetti effect
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000*60*60));
+      const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+      const seconds = Math.floor((distance % (1000*60)) / 1000);
+
+      countdownEl.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s until the event`;
+    }
+
+    const timerInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Simple confetti effect
+    function launchConfetti() {
+      const confettiContainer = document.createElement('div');
+      confettiContainer.style.position = 'fixed';
+      confettiContainer.style.top = '0';
+      confettiContainer.style.left = '0';
+      confettiContainer.style.width = '100%';
+      confettiContainer.style.height = '100%';
+      confettiContainer.style.pointerEvents = 'none';
+      document.body.appendChild(confettiContainer);
+
+      for(let i=0; i<150; i++){
+        const confetto = document.createElement('div');
+        confetto.style.position = 'absolute';
+        confetto.style.width = '10px';
+        confetto.style.height = '10px';
+        confetto.style.backgroundColor = `hsl(${Math.random()*360}, 100%, 50%)`;
+        confetto.style.top = '0px';
+        confetto.style.left = `${Math.random()*100}%`;
+        confetto.style.opacity = 0.8;
+        confetto.style.transform = `rotate(${Math.random()*360}deg)`;
+        confettiContainer.appendChild(confetto);
+
+        let fall = 0;
+        const fallInterval = setInterval(() => {
+          fall += 5 + Math.random()*5;
+          confetto.style.top = fall + 'px';
+          if(fall > window.innerHeight){
+            clearInterval(fallInterval);
+            confetto.remove();
+          }
+        }, 30);
+      }
+
+      setTimeout(() => { confettiContainer.remove(); }, 5000);
+    }
+  </script>
+
+</body>
+</html>
